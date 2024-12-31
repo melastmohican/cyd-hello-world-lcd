@@ -1,5 +1,3 @@
-use std::thread;
-use std::time::Duration;
 use display_interface_spi::SPIInterface;
 use embedded_graphics::draw_target::DrawTarget;
 use embedded_graphics::geometry::Point;
@@ -20,6 +18,8 @@ use esp_idf_svc::hal::spi::{Dma, SpiBusDriver, SpiDriver};
 use esp_idf_svc::hal::units::MegaHertz;
 use mipidsi::models::ILI9341Rgb565;
 use mipidsi::Builder;
+use std::thread;
+use std::time::Duration;
 
 fn main() {
     // It is necessary to call this function once. Otherwise some patches to the runtime
