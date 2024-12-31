@@ -1,0 +1,43 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+      {
+          "preLaunchTask": "rust: cargo build",
+          "type": "probe-rs-debug",
+          "request": "launch",
+          "name": "Launch",
+          "cwd": "${workspaceFolder}",
+          "chip": "esp32", 
+          "flashingConfig": {
+              "flashingEnabled": true,
+              "haltAfterReset": true,
+              "formatOptions": {
+                  "binaryFormat": "idf"
+              }
+          },
+          "coreConfigs": [
+              {
+                  "coreIndex": 0,
+                  "programBinary": "target/xtensa-esp32-espidf/debug/${workspaceFolderBasename}", 
+                  // svdFiles describe the hardware register names off the esp peripherals, such as the LEDC peripheral. 
+                  // They can be downloaded seperatly @ https://github.com/espressif/svd/tree/main/svd
+                  "svdFile": "./.vscode/esp32.svd" 
+              }
+          ]
+      },
+      {
+          "type": "probe-rs-debug",
+          "request": "attach",
+          "name": "Attach",
+          "cwd": "${workspaceFolder}",
+          "chip": "esp32",     
+          "coreConfigs": [
+              {
+                  "coreIndex": 0,
+                  "programBinary": "target/xtensa-esp32-espidf/debug/${workspaceFolderBasename}", 
+                  "svdFile": "./.vscode/esp32.svd"
+              }
+          ]
+      }
+  ]
+}
